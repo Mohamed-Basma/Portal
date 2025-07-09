@@ -1,0 +1,17 @@
+<odoo>
+    <template id="portal_service_requests_template" name="My Service Requests" inherit_id="portal.portal_layout">
+        <xpath expr="//div[@id='wrap']" position="inside">
+            <h2>طلبات الخدمة الخاصة بي</h2>
+            <t t-if="not requests">
+                <p>لا توجد طلبات خدمة بعد.</p>
+            </t>
+            <t t-foreach="requests" t-as="req">
+                <div class="card my-3 p-3 shadow-sm">
+                    <h5><t t-esc="req.name"/></h5>
+                    <small>الحالة: <t t-esc="req.state"/></small>
+                    <p><t t-esc="req.description"/></p>
+                </div>
+            </t>
+        </xpath>
+    </template>
+</odoo>
