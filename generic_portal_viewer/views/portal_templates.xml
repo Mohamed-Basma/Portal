@@ -1,0 +1,61 @@
+<odoo>
+    <template id="portal_view_config_list" name="Portal Configs">
+        <t t-call="portal.portal_layout">
+            <div class="oe_structure">
+                <h2>الشاشات المتاحة</h2>
+                <t t-if="not configs">
+                    <p>لا توجد شاشات متاحة حالياً.</p>
+                </t>
+                <ul>
+                    <t t-foreach="configs" t-as="conf">
+                        <li>
+                            <a t-attf-href="/my/custom-view/{{ conf.id }}">
+                                <t t-esc="conf.name"/>
+                            </a>
+                        </li>
+                    </t>
+                </ul>
+            </div>
+        </t>
+    </template>
+
+    <template id="template_model_list" name="Generic: Model List View">
+        <t t-call="portal.portal_layout">
+            <div class="oe_structure">
+                <h2>السجلات: <t t-esc="model_name"/></h2>
+                <t t-if="not records">
+                    <p>لا توجد بيانات متاحة.</p>
+                </t>
+                <t t-foreach="records" t-as="rec">
+                    <div class="card my-2 p-3 shadow-sm">
+                        <a t-attf-href="/my/custom-view/{{ model_name }}/{{ rec.id }}">
+                            <strong>#<t t-esc="rec.id"/></strong>
+                        </a>
+                        <ul>
+                            <t t-foreach="fields[:3]" t-as="fld">
+                                <li><strong><t t-esc="fld"/>:</strong> <t t-esc="rec[fld]"/></li>
+                            </t>
+                        </ul>
+                    </div>
+                </t>
+            </div>
+        </t>
+    </template>
+
+    <template id="template_model_detail" name="Generic: Model Detail View">
+        <t t-call="portal.portal_layout">
+            <div class="oe_structure">
+                <h2>تفاصيل السجل: <t t-esc="record.id"/></h2>
+                <ul class="list-group">
+                    <t t-foreach="fields" t-as="fld">
+                        <li class="list-group-item">
+                            <strong><t t-esc="fld"/>:</strong>
+                            <t t-esc="record[fld]"/>
+                        </li>
+                    </t>
+                </ul>
+                <a t-attf-href="/my/custom-views" class="btn btn-secondary mt-3">رجوع</a>
+            </div>
+        </t>
+    </template>
+</odoo>

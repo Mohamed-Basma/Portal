@@ -1,0 +1,38 @@
+<odoo>
+    <record id="view_form_portal_view_config" model="ir.ui.view">
+        <field name="name">portal.view.config.form</field>
+        <field name="model">portal.view.config</field>
+        <field name="arch" type="xml">
+            <form string="Portal View Config">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="model_name"/>
+                        <field name="active"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_tree_portal_view_config" model="ir.ui.view">
+        <field name="name">portal.view.config.tree</field>
+        <field name="model">portal.view.config</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="model_name"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+
+    <menuitem id="menu_portal_config_root" name="Portal Viewer"/>
+    <menuitem id="menu_portal_config" name="View Configs" parent="menu_portal_config_root"/>
+    <record id="action_portal_view_config" model="ir.actions.act_window">
+        <field name="name">Portal Views</field>
+        <field name="res_model">portal.view.config</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="menu_action_portal_view_config" parent="menu_portal_config" action="action_portal_view_config"/>
+</odoo>
