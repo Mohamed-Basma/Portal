@@ -1,0 +1,13 @@
+<odoo>
+    <record id="view_kit_component_tree" model="ir.ui.view">
+        <field name="name">kit.component.tree</field>
+        <field name="model">kit.component</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="product_id"/>
+                <field name="quantity"/>
+                <field name="uom_id"/>
+            </tree>
+        </field>
+    </record>
+</odoo>

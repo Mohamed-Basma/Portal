@@ -1,0 +1,68 @@
+<odoo>
+    <record id="view_kit_component_tree" model="ir.ui.view">
+        <field name="name">kit.component.tree</field>
+        <field name="model">kit.component</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="product_id"/>
+                <field name="quantity"/>
+                <field name="uom_id"/>
+            </tree>
+        </field>
+    </record>
+    <record id="view_kit_stages_form" model="ir.ui.view">
+        <field name="name">kit.stages.form</field>
+        <field name="model">kit.stages</field>
+        <field name="arch" type="xml">
+            <form string="Kit Stages">
+                <header>
+                    <button name="action_draft" string="Draft" type="object" class="btn-primary"/>
+                    <button name="action_first_stage" string="First Stage" type="object" class="btn-primary"/>
+                    <button name="action_second_stage" string="Second Stage" type="object" class="btn-primary"/>
+                    <button name="action_third_stage" string="Third Stage" type="object" class="btn-primary"/>
+                    <button name="action_forth_stage" string="Forth Stage" type="object" class="btn-primary"/>
+                    <button name="action_cancel_stage" string="Cancel " type="object" class="btn-primary"/>
+                    <field name="stage" widget="statusbar" statusbar_visible="draft,first,second,third,forth"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="price"/>
+<!--                            <field name="quantity"/>-->
+                            <label for="quantity" string="Quantity"/>
+                            <div class="o_row">
+                                <field name="quantity"/>
+                                <field name="product_uom_id" options="{'no_open':True,'no_create':True}" placeholder="Units"/>
+                            </div>
+                        </group>
+                        <group>
+                            <field name="reference"/>
+                            <field name="bom_type"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Components">
+                            <field name="component_ids">
+                                <tree editable="bottom">
+                                    <field name="product_id"/>
+                                    <field name="quantity"/>
+                                    <field name="uom_id"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_kit_stages" model="ir.actions.act_window">
+        <field name="name">Kit Stages</field>
+        <field name="res_model">kit.stages</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_kit_stages_root" name="Kit Management"/>
+    <menuitem id="menu_kit_stages" parent="menu_kit_stages_root" action="action_kit_stages" name="Kits"/>
+</odoo>
